@@ -13,16 +13,17 @@ const taskList = getById('task_list');
 addBtn.addEventListener('click', function (e) {
     var taskName = taskInput.value;
     if (!taskName) {
-        alert('Please insert your task in input')
+        alert('Please insert your task in input');
+        return;
     }
     taskInput.value = '';
-    addNewItem(taskName)
+    addNewItem(taskName);
 })
 
 
 
 
-// Get the input value
+// Add new task item
 function addNewItem(text) {
     const item = document.createElement('div');
     item.className = 'item';
@@ -41,6 +42,8 @@ function addNewItem(text) {
     taskList.appendChild(item);
 }
 
+
+// Task list event
 taskList.addEventListener('click', function (e) {
     if (e.target.className == 'delete') {
         deleteItem(e);
@@ -54,15 +57,20 @@ taskList.addEventListener('click', function (e) {
 })
 
 
+// Delete task event
 function deleteItem(e) {
     e.target.parentElement.remove()
 }
 
+
+// Complete task event
 function completeItem(e) {
     const newList = e.target.parentElement.firstElementChild;
     newList.classList.toggle('complete_item');
 }
 
+
+// Edit task event
 function editItem(e) {
     const newList = e.target.parentElement.firstElementChild;
     const prevText = newList.innerText;
@@ -86,3 +94,6 @@ function editItem(e) {
     e.target.style.display = 'none';
     console.log(prevText);
 }
+
+
+// Get task on loading

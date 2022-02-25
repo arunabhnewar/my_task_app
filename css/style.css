@@ -8,7 +8,7 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    background: #aed581;
+    background: #263238;
 }
 
 .container {
@@ -18,7 +18,7 @@ body {
 }
 
 .content_title {
-    color: #795548;
+    color: #cfd8dc;
     margin-top: 20px;
 }
 
@@ -35,8 +35,8 @@ body {
 .create_to_do button {
     padding: 10px 25px;
     cursor: pointer;
-    background: #388e3c;
-    border: 2px solid #388e3c;
+    background: #33691e;
+    border: 2px solid #33691e;
     color: #fff;
     font-size: 12px;
     border-radius: 4px;
