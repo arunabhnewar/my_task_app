@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500&family=Roboto&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: #aed581;
+}
+
+.container {
+    text-align: center;
+    font-size: 22px;
+    font-weight:800;
+}
+
+.content_title {
+    color: #795548;
+    margin-top: 20px;
+}
+
+.create_to_do {
+    margin-top: 20px;
+}
+.create_to_do input {
+    padding: 10px;
+    border: 0;
+    outline: 0;
+    border-radius: 4px;
+}
+
+.create_to_do button {
+    padding: 10px 25px;
+    cursor: pointer;
+    background: #388e3c;
+    border: 2px solid #388e3c;
+    color: #fff;
+    font-size: 12px;
+    border-radius: 4px;
+}
+
+.task_list_area ul .item {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#task_list {
+    max-width: 500px;
+    margin:20px auto;
+    
+}
+
+.task_list_area ul .item li {
+    list-style: none;
+    background: #039be5;
+    color: #fff;
+    padding: 13px;
+    flex: 1;
+    text-align: left;
+    font-size: 18px;
+    margin: 10px 0;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
+.task_list_area ul .item button {
+    cursor: pointer;
+    width: 45px;
+    height: 49px;
+    margin: 10px 0;
+    background: #039be5;
+    border: 0;
+    outline: 0;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+
+}
+
+.task_list_area ul .item button i {
+    font-size: 22px;
+     pointer-events: none;
+}
+
+.complete_item{
+    text-decoration : line-through;
+    opacity : 0.5;
+}
