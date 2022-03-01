@@ -45,11 +45,12 @@ function addNewItem(text) {
     // Separate items with the same task name
     let unique = text;
     for (let task of tasks) {
-        if (task.trim() === text) {
+        if (task[0].trim() === text.trim()) {
             unique += ' ';
         }
     }
-    tasks.push(unique);
+    const taskArr = [unique, "active"];
+    tasks.push(taskArr);
     setToLocalStorage(tasks);
 }
 
@@ -79,8 +80,12 @@ function deleteItem(e) {
 // Delete the tasks from local storage
 function deleteFromLocalStorage(deleteTask) {
     const tasks = getFromLocalStorage();
-    console.log(tasks);
-    const index = tasks.indexOf(deleteTask);
+    let index;
+    for (let i = 0; i < tasks.length; i++) {
+        if (tasks[i][0] == deleteTask) {
+            index = i;
+        }
+    }
     tasks.splice(index, 1);
     setToLocalStorage(tasks);
 }
@@ -90,6 +95,24 @@ function deleteFromLocalStorage(deleteTask) {
 function completeItem(e) {
     const newList = e.target.parentElement.firstElementChild;
     newList.classList.toggle('complete_item');
+    const tasks = getFromLocalStorage();
+
+    let index;
+    tasks.forEach((task, i) => {
+        if (task[0] == newList.innerText) {
+            index = i;
+        }
+    })
+    const task = tasks[index];
+    if (task[1] == "active") {
+        task[1] = "completed"
+    }
+    else {
+        task[1] = "active"
+    }
+
+    tasks.splice(index, 1, task);
+    setToLocalStorage(tasks);
 }
 
 
@@ -117,6 +140,21 @@ function editItem(e) {
             newList.innerHTML = '';
             newList.innerText = modifiedName;
             e.target.style.display = 'inline';
+
+            const tasks = getFromLocalStorage();
+
+            let index;
+            for (let i = 0; i < tasks.length; i++) {
+                if (tasks[i][0].trim() == prevText) {
+                    index = i;
+                }
+            }
+
+            let prevTask = tasks[index];
+            prevTask.splice(0, 1, modifiedName)
+
+            tasks.splice(index, 1, prevTask);
+            setToLocalStorage(tasks);
         }
     })
 
@@ -150,21 +188,30 @@ function getFromLocalStorage() {
 
 // Rendering the tasks on UI
 function displayTask(tasks) {
+    // ["Item 1", "Item 2"]
+    // [["Goolgool", "Active"], ["Piku", "Active"]]
+
     tasks.forEach(task => {
         const item = document.createElement('div');
         item.className = 'item';
+
+        let status = '';
+        if (task[1] == "completed") {
+            status = "complete_item";
+        }
+
         item.innerHTML = `
-        <li>${task}</li>
-    <button class="edit">
-    <i class="fas fa-pen-square"></i>
-    </button>
-    <button class="complete">
-    <i class="fas fa-check-circle"></i>
-    </button>
-    <button class="delete">
-    <i class="fas fa-times-circle"></i>
-    </button>
-    `
+        <li class=${status}>${task[0]}</li>
+        <button class="edit">
+        <i class="fas fa-pen-square"></i>
+        </button>
+        <button class="complete">
+        <i class="fas fa-check-circle"></i>
+        </button>
+        <button class="delete">
+        <i class="fas fa-times-circle"></i>
+        </button>
+        `
         taskList.appendChild(item);
     })
 }
